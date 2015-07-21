@@ -1,0 +1,18 @@
+<h1>New Order</h1>
+<%= form_for [@item, @order] do |f| %>
+
+   <%= fields_for @orderitem do |u| %>
+
+   <div>
+     <%= u.label :quantity %>
+     <%= u.text_field :selling_quantity %>
+   </div>
+
+
+   <% end %>
+
+
+  <div>
+    <%= f.submit "Add to Cart" %>
+  </div>
+<% end %>
