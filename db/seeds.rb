@@ -11,9 +11,9 @@ User.create([
   {first_name: "User 3"}
   ])
 Item.create([
-  {name: "Item 1"},
-  {name: "Item 2"},
-  {name: "Item 3"}
+  {name: "Apple", stock_quantity: 10, marked_price: 1.5},
+  {name: "Orange", stock_quantity: 20, marked_price: 2.0},
+  {name: "Banana", stock_quantity: 15, marked_price: 1.0}
   ])
 User.all.each do |user|
 
