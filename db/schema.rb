@@ -26,12 +26,14 @@ ActiveRecord::Schema.define(version: 20150721103628) do
 
   create_table "orderitems", force: :cascade do |t|
     t.integer  "order_id"
+    t.integer  "item_id"
     t.integer  "selling_quantity"
     t.float    "selling_price"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  add_index "orderitems", ["item_id"], name: "index_orderitems_on_item_id", using: :btree
   add_index "orderitems", ["order_id"], name: "index_orderitems_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
@@ -61,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150721103628) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "orderitems", "items"
   add_foreign_key "orderitems", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "orderstatuses", "orders"
