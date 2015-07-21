@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order = Order.new
     @order.user_id = current_user.id
+    @order.status = 1
 
     if @order.save
       @orderitem = Orderitem.new(orderitem_params)
