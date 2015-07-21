@@ -34,11 +34,12 @@ class OrdersController < ApplicationController
       redirect_to item_path(@item)
 
     end
-
-
   end
 
-
+  def checkout
+    session.delete(:current_order_id)
+    redirect_to items_path
+  end
 
 private
     def order_params
