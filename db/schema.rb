@@ -11,10 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721101543) do
+ActiveRecord::Schema.define(version: 20150721103628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "stock_quantity"
+    t.float    "marked_price"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "orderitems", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "selling_quantity"
+    t.float    "selling_price"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "orderitems", ["order_id"], name: "index_orderitems_on_order_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "total_price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "orderstatuses", force: :cascade do |t|
+    t.integer  "order_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orderstatuses", ["order_id"], name: "index_orderstatuses_on_order_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -25,4 +61,7 @@ ActiveRecord::Schema.define(version: 20150721101543) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "orderitems", "orders"
+  add_foreign_key "orders", "users"
+  add_foreign_key "orderstatuses", "orders"
 end
