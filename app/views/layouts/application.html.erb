@@ -67,7 +67,7 @@
                                         <p class="text-left"><strong><%= current_user.first_name %><%current_user.last_name %></strong></p>
                                         <p class="text-left small"><%= current_user.email %></p>
                                         <p class="text-left">
-                                            <a href="#" class="btn btn-primary btn-block btn-sm">Check my orders</a>
+                                            <%= link_to "Check my Orders", orders_path, class:"btn btn-primary btn-block btn-sm" %>
                                         </p>
                                     </div>
                                 </div>
