@@ -15,6 +15,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+
+
+
+
 $(function () {
     $('.button-checkbox').each(function () {
 
