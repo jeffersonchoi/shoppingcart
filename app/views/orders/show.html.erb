@@ -1,0 +1,11 @@
+<h1>Order ID <%= @order.id %></h1>
+<ul>
+    <% @order.orderitems.each do |orderitem| %>
+    <li><%= orderitem.order_id %> </li>
+    <li><%= orderitem.item.name %> </li>
+    <li><%= orderitem.selling_quantity %> </li>
+    <li><%= orderitem.selling_price %> </li>
+
+    <% end %>
+
+</ul>
