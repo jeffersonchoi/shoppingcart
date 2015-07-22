@@ -1,5 +1,5 @@
 <h1>Order ID <%= @order.id %></h1>
-<ul>
+<!-- <ul>
     <% @order.orderitems.each do |orderitem| %>
     <li><%= orderitem.order_id %> </li>
     <li><%= orderitem.item.name %> </li>
@@ -8,7 +8,7 @@
 
     <% end %>
 
-</ul>
+</ul> -->
 
 
 <div class="container">
@@ -30,16 +30,16 @@
 					</div>
 				</div>
 				<div class="panel-body">
+          <% @order.orderitems.each do |orderitem| %>
 					<div class="row">
 						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
 						</div>
 						<div class="col-xs-4">
-              <% @order.orderitems.each do |orderitem| %>
 							<h4 class="product-name"><strong><%= orderitem.item.name %></strong></h4><h4><small>Product description</small></h4>
 						</div>
 						<div class="col-xs-6">
 							<div class="col-xs-6 text-right">
-								<h6><strong><%= orderitem.selling_price %>  <span class="text-muted">x</span></strong></h6>
+								<h6><strong>$<%= orderitem.selling_price %>  <span class="text-muted">x</span></strong></h6>
 							</div>
 							<div class="col-xs-4">
                 <!-- <%= orderitem.selling_quantity %> -->
@@ -95,9 +95,7 @@
 							<h4 class="text-right">Total <strong>$50.00</strong></h4>
 						</div>
 						<div class="col-xs-3">
-							<button type="button" class="btn btn-success btn-block">
-								Checkout
-							</button>
+								<%= link_to "Checkout", checkout_path, class:"btn btn-success btn-block" %>
 						</div>
 					</div>
 				</div>
