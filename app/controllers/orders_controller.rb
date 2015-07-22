@@ -10,27 +10,36 @@ class OrdersController < ApplicationController
   def create
 
     @item = Item.find(params[:item_id])
-    @order = Order.new
-    @order.user_id = current_user.id
+    if session[:current_order_id] == nil
+      order_status
+      if @order.save
+        @orderitem = Orderitem.new(orderitem_params)
+        @orderitem.order_id = session[:current_order_id]
+        @orderitem.item_id = @item.id
+        @orderitem.selling_price = @item.marked_price
+        @orderitem.save
 
-    if @order.save
+        redirect_to item_path(@item)
+      else
+        render :new
+      end
+
+    elsif session[:current_order_id] != nil
       @orderitem = Orderitem.new(orderitem_params)
-      @orderitem.order_id = @order.id
+      @orderitem.order_id = session[:current_order_id]
       @orderitem.item_id = @item.id
       @orderitem.selling_price = @item.marked_price
       @orderitem.save
 
       redirect_to item_path(@item)
-    else
-      render :new
+
     end
-
-
-
-
   end
 
-
+  def checkout
+    session.delete(:current_order_id)
+    redirect_to items_path
+  end
 
 private
     def order_params
