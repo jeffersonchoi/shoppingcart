@@ -30,7 +30,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
-          <% @items.each do |orderitem| %>
+          <% @order.orderitems.each do |orderitem| %>
 					<div class="row">
 						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
 						</div>
@@ -62,7 +62,7 @@
 							</div>
 							<div class="col-xs-3">
 								<button type="button" class="btn btn-default btn-sm btn-block">
-								<%= button_to	"Update Cart", update_item_quantity_path, method: :post, params: {items: { } } %>
+								<%= button_to	"Update Cart", update_item_quantity_path %>
 								</button>
 							</div>
 						</div>

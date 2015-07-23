@@ -9,7 +9,8 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @item = Item.find(params[:item_id])
+    item_ids = session[:cart].keys
+    @items = item_ids.find_all { |item| Item.find(item) }
     @order = Order.new
 
   end
@@ -43,6 +44,33 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit
+    @order = Order.find(current_order)
+    @orderitem = @order.orderitems
+  end
+
+  def update
+    require 'pry'; binding.pry
+    @order = Order.find(current_order)
+      # @orderitem = @order.orderitems
+
+      @order.orderitems.each do |orderitem|
+        @orderitem = orderitem
+        # @orderitem.update(orderitem_params)
+      end
+
+
+    if @orderitem.update(orderitem_params)
+         redirect_to items_path, notice: 'Comment was successfully updated.'
+    else
+      render :edit
+
+    end
+   end
+
+
+
+
   def checkout
     session.delete(:current_order_id)
     redirect_to items_path
@@ -54,7 +82,7 @@ private
     end
 
     def orderitem_params
-      params.require(:orderitem).permit(:selling_quantity, :selling_price)
+      params.require(:orderitem).permit(:selling_quantity)
     end
 
 end

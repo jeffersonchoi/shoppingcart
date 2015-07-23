@@ -1,0 +1,15 @@
+<h1>Edit Order</h1>
+<%= form_for @order do |f| %>
+  <% @orderitem.each do |orderitem| %>
+   <%= fields_for orderitem do |u| %>
+
+       <%= u.text_field :selling_quantity %>
+
+    <% end %>
+   <% end %>
+
+
+  <div>
+    <%= f.submit "Update Order" %>
+  </div>
+<% end %>
