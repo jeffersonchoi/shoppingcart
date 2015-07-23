@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     @cart ||= session[:cart]
   end
 
+
   def items_count
     @items_count = session[:cart].values.sum
   end

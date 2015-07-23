@@ -43,7 +43,7 @@
 								<h6><strong>$<%= orderitem.marked_price %>  <span class="text-muted">x</span></strong></h6>
 							</div>
 							<div class="col-xs-4">
-
+								<!-- form tag -->
 								<input type="text" class="form-control input-sm" value="<%=  itemvalue %>">
 							</div>
 							<div class="col-xs-2">
@@ -64,7 +64,7 @@
 							</div>
 							<div class="col-xs-3">
 								<button type="button" class="btn btn-default btn-sm btn-block">
-								<%= button_to	"Update Cart", users_path, method: :post, params: {items: { } } %>
+								<%= button_to	"Update Cart", update_item_quantity_path, method: :post, params: {items: { } } %>
 								</button>
 							</div>
 						</div>

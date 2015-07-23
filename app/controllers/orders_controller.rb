@@ -11,11 +11,9 @@ class OrdersController < ApplicationController
   def new
     item_ids = session[:cart].keys
     @item_values = session[:cart].values
+    binding.pry
     items = item_ids.find_all { |item| Item.find(item) }
     @itemlist = Item.find(items)
-    binding.pry
-    # puts @items.first
-    # puts item_values
     @order = Order.new
 
   end
@@ -77,7 +75,7 @@ class OrdersController < ApplicationController
 
 
   def checkout
-    session.delete(:current_order_id)
+    session[:cart] = nil
     redirect_to items_path
   end
 

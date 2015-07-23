@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   post 'add_to_cart' => 'cart_items#add_to_cart', as: :add_to_cart
-  post 'update_item_quantity' => 'cart_items#update_item_quantity', as: :update_item_quantity_path
+  post 'update_item_quantity' => 'cart_items#update_item_quantity', as: :update_item_quantity
 
   get '/login'     => 'sessions#new'
   post '/login'    => 'sessions#create'
