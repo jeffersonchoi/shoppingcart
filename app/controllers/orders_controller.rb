@@ -10,7 +10,12 @@ class OrdersController < ApplicationController
 
   def new
     item_ids = session[:cart].keys
-    @items = item_ids.find_all { |item| Item.find(item) }
+    @item_values = session[:cart].values
+    items = item_ids.find_all { |item| Item.find(item) }
+    @itemlist = Item.find(items)
+    binding.pry
+    # puts @items.first
+    # puts item_values
     @order = Order.new
 
   end
